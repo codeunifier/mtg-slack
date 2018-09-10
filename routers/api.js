@@ -19,13 +19,20 @@ router.post('/', function (req, res, next) {
     } else if (req.body.type == 'event_callback') {
         var e = req.body.event;
         if (e.type == 'message' && e.channel_type == 'im') {
-            console.log(req.body.event.text);
-            res.send('received');
+            console.log('Querying for: ' + e.text);
+            request("https://api.magicthegathering.io/v1/cards?name=" + e.text, {json: true}, function (rErr, rRes, rBody) {
+                if (rErr) {
+                    res.send(rErr);
+                    return;
+                }
+                console.log(rBody.cards);
+                res.send(200);
+            });
         } else {
-            res.send(200);
+            res.send(202); //Accepted
         }
     } else {
-        res.send(200);
+        res.send(202); //Accepted
     }
 });
 
