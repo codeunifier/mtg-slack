@@ -16,8 +16,17 @@ router.get('/search', function (req, res, next) {
 router.post('/', function (req, res, next) {
     if (req.body.type == 'url_verification') {
         res.send(req.body.challenge);
+    } else if (req.body.type == 'event_callback') {
+        var e = req.body.event;
+        if (e.type == 'message' && e.channel_type == 'im') {
+            console.log(req.body.event.text);
+            res.send('received');
+        } else {
+            res.send(200);
+        }
+    } else {
+        res.send(200);
     }
-    console.log(req.body);
 });
 
 module.exports = router;
