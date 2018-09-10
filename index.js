@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.PORT || 4040;
@@ -18,6 +19,9 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', function (req, res, next) {
     res.send('Hello world');

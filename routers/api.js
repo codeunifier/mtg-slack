@@ -13,4 +13,11 @@ router.get('/search', function (req, res, next) {
     });
 });
 
+router.post('/', function (req, res, next) {
+    if (req.body.type == 'url_verification') {
+        res.send(req.body.challenge);
+    }
+    console.log(req.body);
+});
+
 module.exports = router;
