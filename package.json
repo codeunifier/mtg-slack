@@ -1,0 +1,29 @@
+{
+  "name": "mtg-slack",
+  "version": "0.0.1",
+  "description": "A slack app with features for Magic: The Gathering",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.6.1",
+    "express-session": "^1.15.6",
+    "nodemon": "^1.18.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeunifier/mtg-slack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codeunifier/mtg-slack/issues"
+  },
+  "homepage": "https://github.com/codeunifier/mtg-slack#readme"
+}
