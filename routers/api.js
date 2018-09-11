@@ -22,6 +22,7 @@ router.post('/', function (req, res, next) {
             console.log('Querying for: ' + e.text);
             request("https://api.magicthegathering.io/v1/cards?name=" + e.text, {json: true}, function (rErr, rRes, rBody) {
                 if (rErr) {
+                    console.log(rErr);
                     res.send(rErr);
                     return;
                 }
@@ -29,7 +30,7 @@ router.post('/', function (req, res, next) {
                 console.log(req.body);
                 var postBody = {
                     token: req.body.token,
-                    // channel: req.body.channel?
+                    channel: e.channel,
                     text: 'Returning search for "' + e.text + "'",
                     attachments: [
                         {
@@ -39,12 +40,14 @@ router.post('/', function (req, res, next) {
                     ]
                 }
 
-                // request("https://slack.com/api/chat.postMessage", "POST", postBody, function (mErr, mRes, mBody) {
-
-                // });
-
-                console.log(rBody.cards);
-                res.send(200);
+                request("https://slack.com/api/chat.postMessage", "POST", postBody, function (mErr, mRes, mBody) {
+                    if (mErr) {
+                        console.log(mErr);
+                        res.send(mErr);
+                        return;
+                    }
+                    res.send(200);
+                });
             });
         } else {
             res.send(202); //Accepted
