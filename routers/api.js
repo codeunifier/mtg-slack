@@ -25,6 +25,24 @@ router.post('/', function (req, res, next) {
                     res.send(rErr);
                     return;
                 }
+
+                console.log(req.body);
+                var postBody = {
+                    token: req.body.token,
+                    // channel: req.body.channel?
+                    text: 'Returning search for "' + e.text + "'",
+                    attachments: [
+                        {
+                            "pretext": rBody.cards[0].name,
+                            "image_url": rBody.cards[0].image_url
+                        }
+                    ]
+                }
+
+                // request("https://slack.com/api/chat.postMessage", "POST", postBody, function (mErr, mRes, mBody) {
+
+                // });
+
                 console.log(rBody.cards);
                 res.send(200);
             });
