@@ -64,7 +64,7 @@ router.post('/', function (req, res, next) {
                             {
                                 "title": rBody.cards[0].name,
                                 //might need to change IsProductNameExact to false
-                                "title_url": "https://shop.tcgplayer.com/productcatalog/product/show?newSearch=false&ProductType=All&IsProductNameExact=true&ProductName=" + nameToUrl(rBody.cards[0].name),
+                                "title_link": "https://shop.tcgplayer.com/productcatalog/product/show?newSearch=false&ProductType=All&IsProductNameExact=true&ProductName=" + nameToUrl(rBody.cards[0].name),
                                 "image_url": rBody.cards[0].imageUrl
                             }
                         ])
