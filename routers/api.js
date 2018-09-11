@@ -39,13 +39,15 @@ router.post('/', function (req, res, next) {
                     ]
                 }
 
-                request("https://slack.com/api/chat.postMessage", postBody, function (mErr, mRes, mBody) {
+                request({url: "https://slack.com/api/chat.postMessage", formData: postBody}, function (mErr, mRes, mBody) {
                     if (mErr) {
                         console.log(mErr);
                         res.send(mErr);
                         return;
                     }
                     console.log('Message sent');
+                    console.log(mRes);
+                    console.log(mBody);
                     res.send(200);
                 });
             });
