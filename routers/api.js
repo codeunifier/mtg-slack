@@ -38,16 +38,34 @@ router.post('/', function (req, res, next) {
                 var postBody;
                 
                 if (rBody.cards.length > 0) {
+                    //in case I want to do more than just the first card
+                    // var cardAttachments = [];
+                    // rBody.cards.forEach(c => {
+                    //     cardAttachments.push({
+                    //         "title": c.name,
+                    //         //might need to change IsProductNameExact to false
+                    //         "title_url": "https://shop.tcgplayer.com/productcatalog/product/show?newSearch=false&ProductType=All&IsProductNameExact=true&ProductName=" + nameToUrl(c.name),
+                    //         "image_url": c.imageUrl
+                    //     });
+                    // });
+                    // postBody = {
+                    //     token: oauth_token,
+                    //     channel: e.channel,
+                    //     text: 'Returning search for "' + e.text + '"',
+                    //     attachments: JSON.stringify(cardAttachments)
+                    // };
+
+                    //just use the first card
                     postBody = {
                         token: oauth_token,
                         channel: e.channel,
                         text: 'Returning search for "' + e.text + '"',
                         attachments: JSON.stringify([
                             {
-                                "pretext": rBody.cards[0].name,
                                 "title": rBody.cards[0].name,
-                                "image_url": rBody.cards[0].imageUrl,
-                                "footer": "https://shop.tcgplayer.com/productcatalog/product/show?newSearch=false&ProductType=All&IsProductNameExact=false&ProductName=" + nameToUrl(rBody.cards[0].name)
+                                //might need to change IsProductNameExact to false
+                                "title_url": "https://shop.tcgplayer.com/productcatalog/product/show?newSearch=false&ProductType=All&IsProductNameExact=true&ProductName=" + nameToUrl(rBody.cards[0].name),
+                                "image_url": rBody.cards[0].imageUrl
                             }
                         ])
                     };
