@@ -31,15 +31,18 @@ router.post('/', function (req, res, next) {
                     token: req.body.token,
                     channel: e.channel,
                     text: 'Returning search for "' + e.text + "'",
-                    attachments: [
-                        {
-                            "pretext": rBody.cards[0].name,
-                            "image_url": rBody.cards[0].image_url
-                        }
-                    ]
+                    'attachments["pretext"]': rBody.cards[0].name,
+                    'attachments["image_url"]': rBody.cards[0].image_url
                 }
 
-                request({url: "https://slack.com/api/chat.postMessage", formData: postBody}, function (mErr, mRes, mBody) {
+                var opts = {
+                    url: "https://slack.com/api/chat.postMessage",
+                    method: "POST",
+                    json: true,
+                    formData: postBody
+                }
+
+                request(opts, function (mErr, mRes, mBody) {
                     if (mErr) {
                         console.log(mErr);
                         res.send(mErr);
