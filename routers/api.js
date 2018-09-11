@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 
+var oauth_token = process.env.SLACK_BOT_AUTH_TOKEN;
+
 router.get('/search', function (req, res, next) {
     console.log(req.query);
     request("https://api.magicthegathering.io/v1/cards?name=" + req.query.q, {json: true}, function (rErr, rRes, rBody) {
@@ -28,7 +30,7 @@ router.post('/', function (req, res, next) {
                 }
 
                 var postBody = {
-                    token: req.body.token,
+                    token: oauth_token,
                     channel: e.channel,
                     text: 'Returning search for "' + e.text + "'",
                     // attachments: [
@@ -38,6 +40,8 @@ router.post('/', function (req, res, next) {
                     //     }
                     // ]
                 }
+
+                console.log(postBody);
 
                 var opts = {
                     url: "https://slack.com/api/chat.postMessage",
