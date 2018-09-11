@@ -3,6 +3,7 @@ var router = express.Router();
 var request = require('request');
 
 var oauth_token = process.env.SLACK_BOT_AUTH_TOKEN;
+var bot_id = 'BCQHY61GU'; //in case I ever need this
 
 router.get('/search', function (req, res, next) {
     console.log(req.query);
@@ -30,6 +31,10 @@ router.post('/', function (req, res, next) {
                     return;
                 }
 
+                var nameToUrl = function (name) {
+                    return name.replace(' ', '%20');
+                }
+
                 var postBody = {
                     token: oauth_token,
                     channel: e.channel,
@@ -37,7 +42,9 @@ router.post('/', function (req, res, next) {
                     attachments: JSON.stringify([
                         {
                             "pretext": rBody.cards[0].name,
-                            "image_url": rBody.cards[0].imageUrl
+                            "title": rBody.cards[0].name,
+                            "image_url": rBody.cards[0].imageUrl,
+                            "footer": "https://shop.tcgplayer.com/productcatalog/product/show?newSearch=false&ProductType=All&IsProductNameExact=false&ProductName=" + nameToUrl(rBody.cards[0].name)
                         }
                     ])
                 }
