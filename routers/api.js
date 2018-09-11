@@ -18,6 +18,7 @@ router.get('/search', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
     if (req.body.type == 'url_verification') {
+        res.statusCode = 200;
         res.send(req.body.challenge);
     } else if (req.body.type == 'event_callback') {
         var e = req.body.event;
@@ -27,7 +28,7 @@ router.post('/', function (req, res, next) {
             request("https://api.magicthegathering.io/v1/cards?name=" + e.text, {json: true}, function (rErr, rRes, rBody) {
                 if (rErr) {
                     console.log(rErr);
-                    res.sendStatus(500);
+                    res.statusCode = 500;
                     res.send(rErr);
                     return;
                 }
@@ -88,13 +89,14 @@ router.post('/', function (req, res, next) {
                 request(opts, function (mErr, mRes, mBody) {
                     if (mErr) {
                         console.log(mErr);
-                        res.sendStatus(500);
+                        res.statusCode = 500;
                         res.send(mErr);
                         return;
                     }
                     console.log('Message sent');
                     // console.log(mRes);
                     console.log(mBody);
+                    res.sendStatus(200);
                 });
             });
         } else {
