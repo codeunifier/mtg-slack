@@ -17,8 +17,6 @@ router.get('/search', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    res.sendStatus(200);
-
     if (req.body.type == 'url_verification') {
         res.send(req.body.challenge);
     } else if (req.body.type == 'event_callback') {
@@ -99,7 +97,13 @@ router.post('/', function (req, res, next) {
                     console.log(mBody);
                 });
             });
+        } else {
+            console.log('not a message');
+            res.sendStatus(200);
         }
+    } else {
+        console.log('unknown type');
+        res.sendStatus(200);
     }
 });
 
