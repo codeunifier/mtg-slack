@@ -27,7 +27,6 @@ router.post('/', function (req, res, next) {
                     return;
                 }
 
-                console.log(req.body);
                 var postBody = {
                     token: req.body.token,
                     channel: e.channel,
@@ -40,12 +39,13 @@ router.post('/', function (req, res, next) {
                     ]
                 }
 
-                request("https://slack.com/api/chat.postMessage", "POST", postBody, function (mErr, mRes, mBody) {
+                request("https://slack.com/api/chat.postMessage", postBody, function (mErr, mRes, mBody) {
                     if (mErr) {
                         console.log(mErr);
                         res.send(mErr);
                         return;
                     }
+                    console.log('Message sent');
                     res.send(200);
                 });
             });
