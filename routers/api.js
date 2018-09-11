@@ -22,7 +22,6 @@ router.post('/', function (req, res, next) {
         var e = req.body.event;
         console.log(e);
         if (e.type == 'message' && e.channel_type == 'im' && e.user && (e.bot_id == null || e.bot_id == undefined)) {
-            counter += 1;
             console.log('Querying for: ' + e.text);
             request("https://api.magicthegathering.io/v1/cards?name=" + e.text, {json: true}, function (rErr, rRes, rBody) {
                 if (rErr) {
