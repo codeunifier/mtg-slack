@@ -34,19 +34,19 @@ router.post('/', function (req, res, next) {
                     token: oauth_token,
                     channel: e.channel,
                     text: 'Returning search for "' + e.text + '"',
-                    attachments: [
+                    attachments: JSON.stringify([
                         {
                             "pretext": rBody.cards[0].name,
                             "image_url": rBody.cards[0].imageUrl
                         }
-                    ]
+                    ])
                 }
 
                 var opts = {
                     url: "https://slack.com/api/chat.postMessage",
                     method: "POST",
                     json: true,
-                    formData: JSON.stringify(postBody)
+                    formData: postBody
                 }
 
                 request(opts, function (mErr, mRes, mBody) {
