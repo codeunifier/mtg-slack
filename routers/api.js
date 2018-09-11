@@ -32,21 +32,31 @@ router.post('/', function (req, res, next) {
                 }
 
                 var nameToUrl = function (name) {
-                    return name.replace(' ', '%20');
+                    return name.split(' ').join('%20');
                 }
 
-                var postBody = {
-                    token: oauth_token,
-                    channel: e.channel,
-                    text: 'Returning search for "' + e.text + '"',
-                    attachments: JSON.stringify([
-                        {
-                            "pretext": rBody.cards[0].name,
-                            "title": rBody.cards[0].name,
-                            "image_url": rBody.cards[0].imageUrl,
-                            "footer": "https://shop.tcgplayer.com/productcatalog/product/show?newSearch=false&ProductType=All&IsProductNameExact=false&ProductName=" + nameToUrl(rBody.cards[0].name)
-                        }
-                    ])
+                var postBody;
+                
+                if (rBody.cards.length > 0) {
+                    postBody = {
+                        token: oauth_token,
+                        channel: e.channel,
+                        text: 'Returning search for "' + e.text + '"',
+                        attachments: JSON.stringify([
+                            {
+                                "pretext": rBody.cards[0].name,
+                                "title": rBody.cards[0].name,
+                                "image_url": rBody.cards[0].imageUrl,
+                                "footer": "https://shop.tcgplayer.com/productcatalog/product/show?newSearch=false&ProductType=All&IsProductNameExact=false&ProductName=" + nameToUrl(rBody.cards[0].name)
+                            }
+                        ])
+                    };
+                } else {
+                    postBody = {
+                        token: oauth_token,
+                        channel: e.channel,
+                        text: 'No cards found for "' + e.text + '"'
+                    }
                 }
 
                 var opts = {
