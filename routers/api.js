@@ -20,6 +20,7 @@ router.post('/', function (req, res, next) {
         res.send(req.body.challenge);
     } else if (req.body.type == 'event_callback') {
         var e = req.body.event;
+        console.log(e);
         // if (e.type == 'message' && e.channel_type == 'im') {
         //     console.log('Querying for: ' + e.text);
         //     request("https://api.magicthegathering.io/v1/cards?name=" + e.text, {json: true}, function (rErr, rRes, rBody) {
