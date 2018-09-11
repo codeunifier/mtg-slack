@@ -32,7 +32,7 @@ router.post('/', function (req, res, next) {
                     channel: e.channel,
                     text: 'Returning search for "' + e.text + "'",
                     'attachments["pretext"]': rBody.cards[0].name,
-                    'attachments["image_url"]': rBody.cards[0].image_url
+                    'attachments["image_url"]': rBody.cards[0].imageUrl
                 }
 
                 var opts = {
