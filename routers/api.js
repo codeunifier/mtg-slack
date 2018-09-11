@@ -31,12 +31,12 @@ router.post('/', function (req, res, next) {
                     token: req.body.token,
                     channel: e.channel,
                     text: 'Returning search for "' + e.text + "'",
-                    attachments: [
-                        {
-                            "pretext": rBody.cards[0].name,
-                            "image_url": rBody.cards[0].imageUrl
-                        }
-                    ]
+                    // attachments: [
+                    //     {
+                    //         "pretext": rBody.cards[0].name,
+                    //         "image_url": rBody.cards[0].imageUrl
+                    //     }
+                    // ]
                 }
 
                 var opts = {
