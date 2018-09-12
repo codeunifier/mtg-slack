@@ -32,15 +32,14 @@ var filterEvents = function (req, res, next) {
             req.body.searchText = e.text;
             req.body.channel = e.channel;
             next();
-        } else if (req.body.type == 'app_mention') {
-            console.log('passing along app mention');
+        } else if (e.type == 'app_mention' && e.client_msg_id != lastMessageReceived) {
             try {
                 lastMessageReceived = req.body.client_msg_id;
                 var message_text = req.body.text;
                 message_text = message_text.split(bot_mention_id)[1];
                 message_text = message_text.split("\"");
                 req.body.searchText = message_text[1];
-                //channel is already set on app mention
+                req.body.channel = e.channel;
                 next();
             } catch (e) {
                 console.log('error parsing message text in app mention');
