@@ -20,6 +20,7 @@ router.get('/search', function (req, res, next) {
 });
 
 var filterEvents = function (req, res, next) {
+    console.log(req.body);
     console.log('filtering...');
     if (req.body.type == 'url_verification') {
         res.statusCode = 200;
