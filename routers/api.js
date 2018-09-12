@@ -32,23 +32,23 @@ var filterEvents = function (req, res, next) {
             req.body.searchText = e.text;
             req.body.channel = e.channel;
             next();
+        } else if (req.body.type == 'app_mention') {
+            console.log('passing along app mention');
+            try {
+                lastMessageReceived = req.body.client_msg_id;
+                var message_text = req.body.text;
+                message_text = message_text.split(bot_mention_id)[1];
+                message_text = message_text.split("\"");
+                req.body.searchText = message_text[1];
+                //channel is already set on app mention
+                next();
+            } catch (e) {
+                console.log('error parsing message text in app mention');
+                console.log(e);
+                res.sendStatus(200);
+            }
         } else {
             console.log('not the right event');
-            res.sendStatus(200);
-        }
-    } else if (req.body.type == 'app_mention') {
-        console.log('passing along app mention');
-        try {
-            lastMessageReceived = req.body.client_msg_id;
-            var message_text = req.body.text;
-            message_text = message_text.split(bot_mention_id)[1];
-            message_text = message_text.split("\"");
-            req.body.searchText = message_text[1];
-            //channel is already set on app mention
-            next();
-        } catch (e) {
-            console.log('error parsing message text in app mention');
-            console.log(e);
             res.sendStatus(200);
         }
     } else {
