@@ -107,7 +107,7 @@ router.post('/', filterEvents, function (req, res, next) {
             };
         } else {
             postBody = {
-                token: "",//oauth_token,
+                token: oauth_token,
                 channel: req.body.channel,
                 text: 'No cards found for "' + req.body.searchText + '"'
             }
@@ -127,10 +127,18 @@ router.post('/', filterEvents, function (req, res, next) {
                 res.send(mErr);
                 return;
             }
-            console.log('Message sent');
-            // console.log(mRes);
-            console.log(mBody);
-            res.sendStatus(200);
+
+            if (mBody.ok) {
+                console.log('Message sent');
+                // console.log(mRes);
+                console.log(mBody);
+                res.sendStatus(200);
+            } else {
+                console.log("Attempted to send message but not okay:");
+                console.log(mBody.error);
+                res.sendStatus(500);
+            }
+            
         });
     });
     
