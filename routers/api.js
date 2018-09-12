@@ -34,8 +34,8 @@ var filterEvents = function (req, res, next) {
             next();
         } else if (e.type == 'app_mention' && e.client_msg_id != lastMessageReceived) {
             try {
-                lastMessageReceived = req.body.client_msg_id;
-                var message_text = req.body.text;
+                lastMessageReceived = e.client_msg_id;
+                var message_text = e.text;
                 message_text = message_text.split(bot_mention_id)[1];
                 message_text = message_text.split("\"");
                 req.body.searchText = message_text[1];
