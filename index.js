@@ -23,10 +23,6 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/', function (req, res, next) {
-    res.send('Hello world');
-});
-
 app.use('/api', apiRouter);
 
 app.listen(port, () => console.log('Listening on port ' + port));

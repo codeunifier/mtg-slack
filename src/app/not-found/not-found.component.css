@@ -1,0 +1,12 @@
+.text-center {
+    text-align: center;
+}
+
+.error-code {
+    font-size: 100px;
+}
+
+.error-image {
+    width: auto;
+    height: 200px;
+}
