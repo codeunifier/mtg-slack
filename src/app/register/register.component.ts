@@ -13,6 +13,7 @@ import { UserRegister } from '../_models/user-register';
 export class RegisterComponent implements OnInit {
   userForm: FormGroup;
   passForm: FormGroup;
+  loading: boolean = false;
 
   submitted: boolean = false;
 
