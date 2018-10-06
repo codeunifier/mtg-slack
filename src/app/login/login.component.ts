@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   myForm: FormGroup;
   submitted: boolean = false;
   invalid_credentials: boolean = false;
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder,
     private myRoute: Router,
