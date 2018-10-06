@@ -7,9 +7,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 var apiRouter = require('./server/routers/api');
+var mongoRouter = require('./server/routers/mongo');
 
 app.use(session({
-    secret: "planechat",
+    secret: "slackity",
     cookie: {
         httpOnly: true,
         maxAge: 60000,
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/api', apiRouter);
+app.use('/mongo', mongoRouter);
 
 app.use(express.static(path.join(__dirname, 'dist')));
 app.get('*', (req, res) => {

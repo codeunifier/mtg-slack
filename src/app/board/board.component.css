@@ -1,0 +1,96 @@
+.board-container {
+    display: grid;
+    grid-template-rows: repeat(2, minmax(100px, 1fr));
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+}
+
+.exile-container {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.battlefield-container {
+    grid-row: 1;
+    grid-column: 2/4;
+}
+
+.graveyard-container {
+    grid-row: 1;
+    grid-column: 4;
+}
+
+.hand-container {
+    grid-row: 2;
+    grid-column: 1/4;
+}
+
+.deck-container {
+    grid-row: 2;
+    grid-column: 4;
+}
+
+.dnd-list-container {
+    width: 200px;
+    border: solid black 1px;
+}
+
+.dnd-list-header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 10px;
+}
+
+.dnd-list {
+    list-style: none;
+}
+
+.dnd-list li {
+    /* background-color: plum; */
+    height: 40px;
+    border: solid purple 1px;
+    line-height: 40px;
+}
+
+.dnd-list li span {
+    padding-left: 10px;
+}
+
+/* Applied to the item being dragged (not the clone) */
+.dnd-drag-border {
+    background-color: plum !important;
+}
+
+/* Applied to the translucent clone when dragging */
+/* .dnd-drag-transit {
+    background-color: red !important;
+}
+
+.dnd-drag-over {
+    background-color: green !important;
+} */
+
+.dnd-drop-container {
+    margin: 5px;
+    max-height: 300px;
+    border: solid black 1px;
+}
+
+.card-color-blue {
+    background-color: lightblue;
+}
+
+.card-color-red {
+    background-color: lightcoral;
+}
+
+.card-color-black {
+    background-color: lightgrey;
+}
+
+.card-color-white {
+    background-color: white;
+}
+
+.card-color-multi {
+    background-color: lightgoldenrodyellow;
+}

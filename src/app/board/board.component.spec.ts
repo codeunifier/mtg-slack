@@ -1,20 +1,20 @@
 // import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { NotFoundComponent } from './not-found.component';
+// import { BoardComponent } from './board.component';
 
-// describe('NotFoundComponent', () => {
-//   let component: NotFoundComponent;
-//   let fixture: ComponentFixture<NotFoundComponent>;
+// describe('BoardComponent', () => {
+//   let component: BoardComponent;
+//   let fixture: ComponentFixture<BoardComponent>;
 
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
-//       declarations: [ NotFoundComponent ]
+//       declarations: [ BoardComponent ]
 //     })
 //     .compileComponents();
 //   }));
 
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(NotFoundComponent);
+//     fixture = TestBed.createComponent(BoardComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });

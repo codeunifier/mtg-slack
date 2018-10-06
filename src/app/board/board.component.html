@@ -1,0 +1,23 @@
+<div class="board-container">
+  <div *ngFor="let list of zoneLists; let listIndex = index"
+    droppable class="dnd-drop-container"
+    [ngClass]="list.classList"
+    (onDrop)="onDrop(listIndex, $event)" [dragOverClass]="'dnd-drag-over'">
+    <div class="dnd-list-header">{{list.name}}</div>
+    <ul class="dnd-list">
+      <li *ngFor="let item of list.items; let itemIndex = index"
+        draggable [dragData]="{ item: item, listIndex: listIndex, itemIndex: itemIndex }" 
+        (onDrag)="onDrag($event)"
+        (onDragStart)="onDragStart($event)"
+        (onDragEnd)="onDragEnd($event)"
+        [dragTransitClass]="'dnd-drag-transit'"
+        [dragClass]="'dnd-drag-border'"
+        [ngClass]="'card-color-' + item.color">
+        <span>{{item.name}}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="deck-container">
+    <!-- <img src="assets/images/card-back.png"/> -->
+  </div>
+</div>

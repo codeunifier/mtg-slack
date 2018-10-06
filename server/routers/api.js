@@ -9,7 +9,7 @@ var bot_mention_id = '<@UCRRC56ET>';
 var lastMessageReceived = "";
 
 router.get('/', function (req, res, next) {
-    res.send("api works!");
+    next();
 });
 
 router.get('/search', function (req, res, next) {
